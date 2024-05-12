@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book Recommender System</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #212529;
+        color: #f8f9fa;
+      } /* Dark background, light text */
+      .navbar {
+        background-color: #007bff;
+      } /* Primary Bootstrap color for navbar */
+      .card {
+        background-color: #343a40;
+        border: none;
+      } /* Darker card background */
+      .card-img-top {
+        height: 300px;
+        object-fit: cover;
+      } /* Fixed image height, maintain aspect ratio */
+      .card-body {
+        padding: 1.25rem;
+      } /* Add some padding to card body */
+      .text-muted {
+        color: #6c757d !important;
+      } /* Make muted text lighter on dark background */
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">My Book Recommender</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recommend">Recommend</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container mt-5">
+      <h1 class="text-center mb-4" style="font-size: 3rem">
+        Top 50 Books <i class="fas fa-book"></i>
+      </h1>
+
+      <div class="row">
+        {% for i in range(book_name|length) %}
+        <div class="col-md-3 mb-4">
+          <div class="card h-100">
+            <img
+              src="{{ image[i] }}"
+              class="card-img-top"
+              alt="{{ book_name[i] }}"
+            />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ book_name[i] }}</h5>
+              <p class="card-text text-muted">{{ author[i] }}</p>
+              <div class="mt-auto">
+                <p class="card-text">
+                  Votes: {{ votes[i] }} <i class="fas fa-thumbs-up"></i>
+                </p>
+                <p class="card-text">
+                  Rating: {{ rating[i] }} <i class="fas fa-star"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
